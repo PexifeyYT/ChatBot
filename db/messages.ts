@@ -1,5 +1,5 @@
 import { createMessage as mockCreateMessage, getMessagesByChatId as mockGetMessagesByChatId } from "@/lib/mock-data/store"
-import { TablesInsert } from "@/supabase/types"
+import { TablesInsert, Tables } from "@/supabase/types"
 
 export const getMessageById = async (messageId: string) => {
   // Search through all messages to find one with the matching ID
@@ -29,12 +29,21 @@ export const createMessages = async (messages: TablesInsert<"messages">[]) => {
 
 export const updateMessage = async (
   messageId: string,
-  content: string
+  updates: Partial<Tables<"messages">> | string
 ) => {
   // This is just a stub - you would modify the message in the mock data store
-  return {
-    id: messageId,
-    content
+  if (typeof updates === 'string') {
+    // Handle the old way for backwards compatibility
+    return {
+      id: messageId,
+      content: updates
+    }
+  } else {
+    // Handle the new way with a message object
+    return {
+      id: messageId,
+      ...updates
+    }
   }
 }
 
