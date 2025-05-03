@@ -395,11 +395,8 @@ export const useChatHandler = () => {
   ) => {
     if (!selectedChat) return
 
-    await deleteMessagesIncludingAndAfter(
-      selectedChat.user_id,
-      selectedChat.id,
-      sequenceNumber
-    )
+    const chatId = selectedChat.id
+    await deleteMessagesIncludingAndAfter(chatId, sequenceNumber)
 
     const filteredMessages = chatMessages.filter(
       chatMessage => chatMessage.message.sequence_number < sequenceNumber
