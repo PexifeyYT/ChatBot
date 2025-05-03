@@ -1,6 +1,6 @@
 "use client"
 
-import { Sidebar } from "@/components/sidebar/sidebar"
+import Sidebar from "@/components/sidebar/sidebar"
 import { SidebarSwitcher } from "@/components/sidebar/sidebar-switcher"
 import { Button } from "@/components/ui/button"
 import { Tabs } from "@/components/ui/tabs"

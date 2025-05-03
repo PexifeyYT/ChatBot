@@ -58,7 +58,7 @@ export default function WorkspaceLayout({
       <Header />
 
       <div className="flex h-[calc(100%-65px)]">
-        <Sidebar />
+        <Sidebar contentType="chats" showSidebar={true} />
 
         <div className="w-full overflow-auto pb-36 2xl:px-32">
           <div className="mx-auto w-full max-w-screen-lg">{children}</div>

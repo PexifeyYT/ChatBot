@@ -1,3 +1,4 @@
+import { ContentType } from "@/types"
 import { mockHomeWorkspace } from "@/lib/mock-data/store"
 import { IconHome, IconMessage, IconPlus } from "@tabler/icons-react"
 import { useRouter } from "next/navigation"
@@ -5,10 +6,14 @@ import { FC } from "react"
 
 interface SimplifiedSidebarProps {
   onNavItemClick?: () => void
+  contentType?: ContentType
+  showSidebar?: boolean
 }
 
 const SimplifiedSidebar: FC<SimplifiedSidebarProps> = ({ 
-  onNavItemClick = () => {} 
+  onNavItemClick = () => {},
+  contentType,
+  showSidebar
 }) => {
   const router = useRouter()
 

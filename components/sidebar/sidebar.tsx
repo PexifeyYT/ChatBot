@@ -1,10 +1,16 @@
+import { ContentType } from "@/types"
 import { FC } from "react"
 import SimplifiedSidebar from "./simplified-sidebar"
 
-const Sidebar: FC = () => {
+interface SidebarProps {
+  contentType: ContentType
+  showSidebar: boolean
+}
+
+const Sidebar: FC<SidebarProps> = ({ contentType, showSidebar }) => {
   return (
     <div className="hidden h-full w-[250px] border-r md:block">
-      <SimplifiedSidebar />
+      <SimplifiedSidebar contentType={contentType} showSidebar={showSidebar} />
     </div>
   )
 }
