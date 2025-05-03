@@ -31,19 +31,26 @@ export const updateMessage = async (
   messageId: string,
   updates: Partial<Tables<"messages">> | string
 ) => {
-  // This is just a stub - you would modify the message in the mock data store
+  // Get the original message to use as a base
+  const originalMessage = await getMessageById(messageId);
+  
+  if (!originalMessage) {
+    throw new Error(`Message with id ${messageId} not found`);
+  }
+  
+  // Apply updates
   if (typeof updates === 'string') {
     // Handle the old way for backwards compatibility
     return {
-      id: messageId,
+      ...originalMessage,
       content: updates
-    }
+    };
   } else {
     // Handle the new way with a message object
     return {
-      id: messageId,
+      ...originalMessage,
       ...updates
-    }
+    };
   }
 }
 
