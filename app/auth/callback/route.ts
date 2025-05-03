@@ -7,11 +7,9 @@ export async function GET(request: Request) {
   const code = requestUrl.searchParams.get("code")
   const next = requestUrl.searchParams.get("next")
 
-  if (code) {
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
-    await supabase.auth.exchangeCodeForSession(code)
-  }
+  // With our mock implementation, we don't need to exchange code for session
+  // This code would normally handle the OAuth callback from Supabase
+  // But since we're using a mock auth system, we just need to redirect
 
   if (next) {
     return NextResponse.redirect(requestUrl.origin + next)
