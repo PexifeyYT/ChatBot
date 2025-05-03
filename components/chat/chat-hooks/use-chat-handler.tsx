@@ -394,18 +394,25 @@ export const useChatHandler = () => {
     sequenceNumber: number
   ) => {
     if (!selectedChat) return
-    
+
     const chatId = selectedChat.id
     
-    await deleteMessagesIncludingAndAfter(chatId, sequenceNumber)
-    
-    const filteredMessages = chatMessages.filter(
-      chatMessage => chatMessage.message.sequence_number < sequenceNumber
-    )
-    
-    setChatMessages(filteredMessages)
-    
-    handleSendMessage(editedContent, filteredMessages, false)
+    try {
+      const result = await deleteMessagesIncludingAndAfter(
+        chatId,
+        sequenceNumber
+      )
+      
+      const filteredMessages = chatMessages.filter(
+        chatMessage => chatMessage.message.sequence_number < sequenceNumber
+      )
+      
+      setChatMessages(filteredMessages)
+      
+      handleSendMessage(editedContent, filteredMessages, false)
+    } catch (error) {
+      console.error("Error deleting messages:", error)
+    }
   }
 
   return {
